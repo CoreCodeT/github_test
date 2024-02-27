@@ -1,0 +1,91 @@
+git clone url: url 내용을 clone함(Reopsitory 복제)
+https://github.com/CoreCodeT/github_test/blob/main/test2.txt
+* github ssh 생성
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=windows
+
+
+* git 명령어
+git status: git 상태 확인
+git add *: 모든 파일 스테이징
+git commit -a -m "message": message를 이용하여 스테이징과 커밋을 한번에
+
+git diff: 최신 저장소에 있는 파일과 현재 수정 파일의 차이점 확인
+git log --stat: log에 어떤 파일이 수정되었는지 보여줌
+git commit --amend: 마지막에 commit한 comment 수정
+
+----
+git reset HEAD^: 커밋한 것을 취소
+git reset --hard <hash>: hash가 가장 최신 커밋이 
+git revert: 협업을 위해 사용되며 되돌아가는 기능임
+
+-----
+git config user.name: user 이름 확인
+git config --global user.name "name": name으로 유저이름 변경
+git config user.email: 유저 메일 확인
+
+git config --global core.editor "code --wait": 에디터를 VSC로 변경
+git log --oneline: 한줄로 로그 표ㅕ시
+------
+git branch: git branch 확인
+git switch name: name으로 branch 이동
+git switch -c name: name이라는 브랜치를 생성하고 이동
+gir branch -D name: name이라는 브랜치를 강제삭제
+git branch -m newname: branch 이름 변경(바꾸고자 하는 브랜치에서 실행)
+git checkout -b newname: newname이라는 이름의 브랜치를 생성하고 이동
+
+-----
+git diff: staging 되지 않은 working directory 파일과 commit된 것이랑 비교함
+git diff HEAD:마지막 commit 이후 변경된 모든 것을 보여줌(working directory, staging aerea 에있는 것을 모두 cmmit 된 것과 비교함)
+git diff --staged or git diff --cached: staging 영역과 commit 된 것을 비교
+git diff branch1..branch2: branc1과 branch2와 비교. branch1 대비 branch2가 뭐가 바뀌었는지
+git diff hash1..hash2: hash1 대비 hash2가 어떤것이 바뀌었는지 비교
+
+---
+git stash: 변경 사항을 임시로 저장
+git stash pop: 가장 최근의 stash를 불러옴
+git stash apply: 가장 최신의 stash를 불러오는데, stash 영역에 해당 stash 파일이 남겨져 있음. 즉 여러번 적용 가능함.
+(pop을 하면 한번만 불러올 수 있음)
+git stash list: git stash 명령어를 여러번 사용한 경우, stash list를 볼 수 있음
+git stash apply stash@{2}: stash list의 stash@{2}의 내용을 불러옴
+git stash drop stash@{2}: stash list의 stash@{2}를 제거함
+git stash clear: stash 내용 모두 삭제
+
+--- 
+git checkout HEAD~1: head 이전 1칸으로 checkout
+git checkout -: checkout으로 넘오오기 바로 이전 commit으로 돌아감
+git checkout HEAD 파일명: 파일명에서 작업했던 내용을 모두 다 삭제하고 싶을 떄(working directory 내용 삭제. 즉 ㅈ새로 작성한 것들이 다 사라지고 마지막 커밋으로 되돌림)
+ --> 같은 명령어는 git checkout --파일명, git restore 파일명
+
+--
+git restore --source HEAD~1 파일명: 헤더기준으로 1단게 이전 상태로 돌아가서 복원 진행
+git restored --staged 파일명: 해당 파일을 unstage 함
+
+git reset <hash>: hash로 돌아감. 근데 working directory에서 했던작업했던 내용은 사라지지 않음. 즉 commit 했던 것을 hash 전까지 모두 없애는 것
+git reset --hard <hash>: hash 까지 돌아가는데, working directory에서 작업헀던 내용도 모두 사라짐
+git revert <hash> hash로 돌아가는데 기존 커밋했던 내용은 삭제하지 않음(협업을 위한 것)
+
+
+
+
+
+
+git remote -v: 연결되어 있는 저장소를 보여줌
+git remote add <name> <URL>: 
+git remote rename <old> <new>
+git remote remove <name>
+
+git push <remote> <branch>: 특정 branch를 push
+git push <remote> <local-branch>:<remote-branch>: local branch를 remote branch로 push. 각 branch의 이름이 다를 경우 사용
+
+git push -u origian branch:  branch를 upstream해서 local branch랑 remote branch랑 일치하게 해줌
+
+git branch -M main: 현재 브랜치의 이름을 main으로 변경
+git branch -r: 원격 브랜치 보기
+git switch branch명: 이렇게 branch로 스위치하면, 로컬에서 해당 branch를 만들고 원격 브랜치에 자동으로 붙여줌
+ -> 즉, 원격 branch를 clone해 와서 작업할 때, 다른 branch가 보이지 않는다면 이렇게 이동해야됨
+
+git fetch <remote> <branch>: remote repository에 있는 것을 local repository로 가져옴
+git fetch:
+ -> 현재 작업중인 것은 만지지 않고, 최신 커밋을 가져오는 것
+ -> 내가 작업하던 것과 기존 branch와 분리가 됨
+git pull: fetch과 merge를 한번에 수행한 것
