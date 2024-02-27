@@ -4,6 +4,7 @@ https://github.com/CoreCodeT/github_test/blob/main/test2.txt
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=windows
 
 
+
 * git 명령어
 git status: git 상태 확인
 git add *: 모든 파일 스테이징
